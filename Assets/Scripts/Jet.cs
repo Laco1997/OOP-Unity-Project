@@ -8,8 +8,6 @@ public class Jet : Vehicle
     {
         maxMotorTorque = 8f;
         maxSteeringAngle = 15f;
-
-
     }
 
     void FixedUpdate()

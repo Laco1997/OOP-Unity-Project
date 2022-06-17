@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Vehicle : MonoBehaviour
 {
-    protected float maxMotorTorque; // maximum torque the motor can apply to wheel
-    protected float maxSteeringAngle; // maximum steer angle the wheel can have
+    protected float maxMotorTorque;
+    protected float maxSteeringAngle;
 
     public virtual void Move()
     {

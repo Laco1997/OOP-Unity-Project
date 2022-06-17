@@ -20,7 +20,7 @@ public class CameraView : MonoBehaviour
         specificVehicle = vehicle.transform.GetChild(0);
         float vehicleLength = specificVehicle.GetComponent<BoxCollider>().size.z;
         float vehicleHeight = specificVehicle.GetComponent<BoxCollider>().size.y;
-        offset = new Vector3(0, vehicleHeight * 2, -(vehicleLength + 1));
+        offset = new Vector3(0, vehicleHeight * 1.5f, -(vehicleLength + 1));
         viewPoinOffset = new Vector3(0, 1.5f, 0);
     }
 

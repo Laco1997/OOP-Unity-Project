@@ -6,7 +6,7 @@ public class Car : Vehicle
 {
     public override void Move()
     {
-        maxMotorTorque = 5f;
+        maxMotorTorque = 6f;
         maxSteeringAngle = 10f;
         base.Move();
     }
