@@ -4,17 +4,10 @@ using UnityEngine;
 
 public class Vehicle : MonoBehaviour
 {
-    public float maxMotorTorque; // maximum torque the motor can apply to wheel
-    public float maxSteeringAngle; // maximum steer angle the wheel can have
+    protected float maxMotorTorque; // maximum torque the motor can apply to wheel
+    protected float maxSteeringAngle; // maximum steer angle the wheel can have
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void FixedUpdate()
+    public virtual void Move()
     {
         float motor = maxMotorTorque * Input.GetAxis("Vertical");
         float steering = maxSteeringAngle * Input.GetAxis("Horizontal");
@@ -22,4 +15,5 @@ public class Vehicle : MonoBehaviour
         transform.Translate(Vector3.forward * Time.deltaTime * maxMotorTorque * motor);
         transform.Rotate(Vector3.up, Time.deltaTime * maxSteeringAngle * steering);
     }
+
 }

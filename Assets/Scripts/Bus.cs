@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Car : Vehicle
+public class Bus : Vehicle
 {
     public override void Move()
     {
-        maxMotorTorque = 5f;
-        maxSteeringAngle = 10f;
+        maxMotorTorque = 3f;
+        maxSteeringAngle = 6f;
         base.Move();
     }
 

@@ -5,7 +5,8 @@ using UnityEngine;
 public class CameraView : MonoBehaviour
 {
     [SerializeField] GameObject vehicle;
-    Vector3 offset;
+    Transform specificVehicle;
+    [SerializeField] Vector3 offset;
     Vector3 viewPoinOffset;
     Vector3 targetPosition;
     float translateSpeed = 10;
@@ -16,7 +17,10 @@ public class CameraView : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        offset = new Vector3(0, 2.68f, -6f);
+        specificVehicle = vehicle.transform.GetChild(0);
+        float vehicleLength = specificVehicle.GetComponent<BoxCollider>().size.z;
+        float vehicleHeight = specificVehicle.GetComponent<BoxCollider>().size.y;
+        offset = new Vector3(0, vehicleHeight * 2, -(vehicleLength + 1));
         viewPoinOffset = new Vector3(0, 1.5f, 0);
     }
 
@@ -28,9 +32,9 @@ public class CameraView : MonoBehaviour
 
     void AutomaticRotation()
     {
-        targetPosition = vehicle.transform.TransformPoint(offset);
+        targetPosition = specificVehicle.transform.TransformPoint(offset);
         transform.position = Vector3.Lerp(transform.position, targetPosition, translateSpeed * Time.deltaTime);
-        Vector3 direction = (vehicle.transform.position + viewPoinOffset) - transform.position;
+        Vector3 direction = (specificVehicle.transform.position + viewPoinOffset) - transform.position;
         Quaternion rotation = Quaternion.LookRotation(direction, Vector3.up);
         transform.rotation = Quaternion.Lerp(transform.rotation, rotation, rotationSpeed * Time.deltaTime);
     }
@@ -39,7 +43,7 @@ public class CameraView : MonoBehaviour
     void MouseRotation()
     {
         offset = Quaternion.AngleAxis(Input.GetAxis("Mouse X") * mouseRotationSpeed, Vector3.up) * offset;
-        transform.position = vehicle.transform.position + offset;
-        transform.LookAt(vehicle.transform.position);
+        transform.position = specificVehicle.transform.position + offset;
+        transform.LookAt(specificVehicle.transform.position);
     }
 }
