@@ -11,23 +11,27 @@ public class CameraView : MonoBehaviour
     Vector3 targetPosition;
     float translateSpeed = 10;
     float rotationSpeed = 20;
+    bool initialized = false;
 
     float mouseRotationSpeed = 2f;
 
-    // Start is called before the first frame update
-    void Start()
+    public void Initialize()
     {
         specificVehicle = vehicle.transform.GetChild(0);
         float vehicleLength = specificVehicle.GetComponent<BoxCollider>().size.z;
         float vehicleHeight = specificVehicle.GetComponent<BoxCollider>().size.y;
         offset = new Vector3(0, vehicleHeight * 1.5f, -(vehicleLength + 1));
         viewPoinOffset = new Vector3(0, 1.5f, 0);
+        initialized = true;
+        Debug.Log(initialized);
     }
 
-    // Update is called once per frame
     void FixedUpdate()
     {
-        AutomaticRotation();
+        if(initialized)
+        {
+            AutomaticRotation();
+        }
     }
 
     void AutomaticRotation()

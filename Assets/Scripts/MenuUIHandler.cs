@@ -7,18 +7,13 @@ using UnityEngine.UI;
 
 public class MenuUIHandler : MonoBehaviour
 {
-    [SerializeField] RawImage vehicleSelector;
-
     public void NewStart()
     {
         SceneManager.LoadScene(1);
     }
 
-    public void PickVehicle()
+    public void GoToMenu()
     {
-        Button imgBtn = vehicleSelector.GetComponent<Button>();
-        ColorBlock colors = imgBtn.colors;
-        colors.selectedColor = Color.green;
-        imgBtn.colors = colors;
+        SceneManager.LoadScene(0);
     }
 }
